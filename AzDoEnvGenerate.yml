@@ -1,0 +1,24 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- none
+
+variables:
+  adminUsername: exampleadmin
+  dnsLabelPrefix: "afdawegewagawe"
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+
+- task: AzurePowerShell@5
+  inputs:
+    azureSubscription: 'AzureCon'
+    ScriptType: 'FilePath'
+    ScriptPath: 'Tests/ARM_What-If.ps1'
+    ScriptArguments: '-TestResourceGroupName ARMdeploymentTest'
+    azurePowerShellVersion: 'LatestVersion'
